@@ -23,7 +23,7 @@ export const loginAsync = createAsyncThunk(
 
       localStorage.setItem('access_token', data.access);
       localStorage.setItem('refresh_token', data.refresh);
-    
+
       return data;
     } catch (error) {
       if (error.response) {
@@ -42,33 +42,6 @@ export const loginAsync = createAsyncThunk(
   }
 );
 
-// export const loginAsync = createAsyncThunk(
-//   "auth/login",
-//   async ({ userCredentials }) => {
-//     try {
-//       const { data } = await api.post(
-//         "/token/",
-//         userCredentials,
-//         {
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//           withCredentials: true,
-//         }
-//       );
-
-//       localStorage.removeItem("access_token");
-//       localStorage.removeItem("refresh_token");
-//       localStorage.setItem("access_token", data.access);
-//       localStorage.setItem("refresh_token", data.refresh);
-
-//       return data;
-//     } catch (error) {
-//       console.error("Login error:", error);
-//     }
-//   }
-// );
-
 const authSlice = createSlice({
   name: 'auth',
   initialState,
@@ -76,8 +49,7 @@ const authSlice = createSlice({
     logout(state) {
       localStorage.removeItem('access_token');
       localStorage.removeItem('refresh_token');
-      localStorage.removeItem('StaySignedIn');
-      // state.isLoggedIn = false;
+      state.isLoggedIn = false;
     },
   },
   extraReducers: (builder) => {

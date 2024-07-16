@@ -55,8 +55,6 @@ import MatchIDDirectory from './components/MatchIDDirectory';
 import ModifyMatchID from './components/MatchIDDirectory/ModifyMatchID';
 import ProtectedRoutes from '../src/components/common/Protectedroutes';
 
-
-
 const router = createBrowserRouter([
   { path: routes.index, element: <LoginForm /> },
   {
@@ -78,6 +76,7 @@ const router = createBrowserRouter([
           { path: '/clientprofile/:clientId', element: <ClientProfile /> },
           { path: routes.home, element: <Home /> },
           { path: routes.clientChart, element: <ClientChart /> },
+          { path: '/clientchart/:clientId', element: <ClientChart /> },
           {
             path: '/medication-details/:clientId',
             element: <MedicationTable />,

@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 import axios from 'axios'; // Don't forget to import axios if it's not already imported
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginAsync } from '../../store/slices/authSlice';
 import { fetchPermissionList } from '../../store/slices/userInfoSlice';
 import { useForm } from 'react-hook-form';
-import { TailSpin } from 'react-loader-spinner';
 import { BeatLoader } from 'react-spinners';
 
 // import RootsLogo from "../../image/root.png";
 import RootsLogo from '../images/logo-full-v.png';
 import apiURL from '../.././apiConfig';
-import PasswordReset from './PasswordReset';
 import AlertSuccess from '../common/AlertSuccess';
 import AlertError from '../common/AlertError';
-import { useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
+import { routes } from '../../constants/routes';
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -25,7 +24,10 @@ const LoginForm = () => {
   const [successMsg, setSuccessMsg] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-
+  
+  
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  
   const closeSuccessAlert = () => {
     setSuccessShowAlert(false);
   };
@@ -41,7 +43,7 @@ const LoginForm = () => {
     formState: { errors },
     reset,
   } = useForm();
-
+  
   const {
     register: registerLogin,
     handleSubmit: handleSubmitLogin,
@@ -59,23 +61,20 @@ const LoginForm = () => {
       email: loginData.userEmail,
       password: loginData.password,
     };
-
     try {
       setIsLoading(true);
       dispatch(loginAsync(user)).then((result) => {
         // 'result' here contains either the fulfilled action payload or the rejected action payload
+        console.log('result', result);
         if (result.payload.detail) {
           setErrorMsg(result.payload.detail);
         } else if (result.payload) {
           setErrorMsg(result.payload);
+          navigate('/');
         }
         setErrorShowAlert(true);
         setIsLoading(false);
-        navigate("/");
-        console.log('killer');
-        
         dispatch(fetchPermissionList());
-        // }
       });
     } catch (error) {
       console.error('Login error:', error);
@@ -83,12 +82,12 @@ const LoginForm = () => {
 
     console.log('Login');
   };
-
+  
   const handlePasswordReset = (resetData) => {
     console.log(resetData);
-
+    
     axios
-      .post(`${apiURL}/api/password/reset/`, resetData)
+    .post(`${apiURL}/api/password/reset/`, resetData)
       .then((response) => {
         console.log(response.data);
         setSuccessMsg('Password reset email has been sent');
@@ -105,6 +104,10 @@ const LoginForm = () => {
         setErrorShowAlert(true);
       });
   };
+
+  if (isLoggedIn) {
+    return <Navigate to={routes.dashboard} replace={true} />;
+  }
 
   return (
     <div

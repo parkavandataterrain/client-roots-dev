@@ -1,13 +1,8 @@
 import React from 'react';
-import HorizontalSidebar from '../SideBar/HorizontalSidebar';
 import Navbar from '../NavBar/NavBar';
-import { Navigate, Outlet } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { routes } from '../../constants/routes';
+import { Outlet } from 'react-router-dom';
 
 const RootLayout = () => {
-
-
   return (
     <main className="">
       <Navbar />

@@ -18,6 +18,7 @@ import {
   selectIsSidebarExpanded,
 } from '../../store/slices/utilsSlice';
 import HorizontalSidebar from '../SideBar/HorizontalSidebar';
+import { logout } from '../../store/slices/authSlice';
 
 const Navbar = React.memo(({ onLogout, isMinimized }) => {
   const navigate = useNavigate();
@@ -70,11 +71,18 @@ const Navbar = React.memo(({ onLogout, isMinimized }) => {
     setDropdownOpen((prev) => !prev);
   }, []);
 
-  const logout = useCallback(() => {
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('refresh_token');
-    navigate('/login');
-  }, [navigate]);
+  // const logout = useCallback(() => {
+  //   localStorage.removeItem('access_token');
+  //   localStorage.removeItem('refresh_token');
+  //   // onLogout();
+  //   navigate('/');
+  // }, [navigate]);
+
+  const handleLogout = () => {
+    dispatch(logout());
+    // Optionally, you can also dispatch the logout thunk (if needed):
+    // dispatch(logout());
+  };
 
   // Handle click outside dropdown
   useEffect(() => {
@@ -162,7 +170,7 @@ const Navbar = React.memo(({ onLogout, isMinimized }) => {
             <MenuItem onClick={handleClose} id="my-account-menu">
               My account
             </MenuItem>
-            <MenuItem onClick={logout} id="logout-menu">
+            <MenuItem onClick={handleLogout} id="logout-menu">
               Logout
             </MenuItem>
           </Menu>

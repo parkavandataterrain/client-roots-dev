@@ -25,6 +25,7 @@ import EditGreenPNG from '../images/edit-green.png';
 import SaveGreenPNG from '../images/save-green.png';
 import CustomFieldsForAll from './CustomFieldsForAll';
 import CustomFieldsForUser from './CustomFieldsForUser';
+import { useUnsavedChangesWarning } from '../common/useUnSavedChangesWarning';
 // import DynamicFieldForm from './clientprofile/dynamicfield'
 
 const bulkupdate = {
@@ -238,11 +239,9 @@ const ClientProfile = ({ isNew }) => {
 
   const mode = clientId && !isNew ? 'edit' : 'new';
 
-  unstable_usePrompt({
-    message: 'Are you sure?',
-    when: ({ currentLocation, nextLocation }) =>
-      isDirty && currentLocation.pathname !== nextLocation.pathname,
-  });
+  useUnsavedChangesWarning(isDirty);
+
+  
 
   const parseToDnDCustomFields = (items) => {
     return items.map((itm) => {
@@ -587,7 +586,7 @@ const ClientProfile = ({ isNew }) => {
     // console.log('ClientForm-data', { customFieldsTags, postClientData });
 
     if (isNew || clientData?.status === null) {
-      postClientData.status = "pending";
+      postClientData.status = 'pending';
     }
     console.log({ postClientData });
     const apiEndpoint = isNew

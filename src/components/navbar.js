@@ -25,7 +25,6 @@ const Navbar = ({ isMinimized, toggleSidebar }) => {
     setAnchorEl(null);
   };
 
-  const onLogout = useSelector((state) => state.auth.logout);
 
   useEffect(() => {
     const fetchProfileType = async () => {
