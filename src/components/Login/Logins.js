@@ -16,6 +16,7 @@ import { routes } from '../../constants/routes';
 
 const LoginForm = () => {
   const navigate = useNavigate();
+  
   const [isFlipped, setIsFlipped] = useState(false);
   const [showSuccessAlert, setSuccessShowAlert] = useState(false);
   const [showErrorAlert, setErrorShowAlert] = useState(false);
@@ -65,12 +66,11 @@ const LoginForm = () => {
       setIsLoading(true);
       dispatch(loginAsync(user)).then((result) => {
         // 'result' here contains either the fulfilled action payload or the rejected action payload
-        console.log('result', result);
         if (result.payload.detail) {
           setErrorMsg(result.payload.detail);
         } else if (result.payload) {
           setErrorMsg(result.payload);
-          navigate('/');
+          // navigate('/');
         }
         setErrorShowAlert(true);
         setIsLoading(false);

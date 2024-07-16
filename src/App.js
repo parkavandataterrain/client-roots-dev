@@ -43,7 +43,7 @@ import SocialVitalSignsMain from './components/SocialVitalSigns/SocialVitalSigns
 import Preview from './components/dynamicform/preview';
 import YourComponent from './components/dynamicform/create';
 import AddNewSocialVitalSigns from './components/SocialVitalSigns/AddNewSocialVitalSigns';
-import FormView from './components/dynamicform/FormView/';
+import FormView from './components/dynamicform/FormView';
 import CarePlanView from './components/CarePlanView/CarePlan';
 
 import FormBuilder from './components/dynamicform/FormBuilder';
@@ -82,11 +82,11 @@ import MatchIDDirectory from './components/MatchIDDirectory';
 import TableListView from './components/TableListView';
 import DataView from './components/TableListView/DataView';
 
-import ScrollToTop from "./components/ScrollToTop";
-import Facility from "./components/Facility";
-import Department from "./components/Department";
-import Svs from "./pages/svs/Svs";
-import ModifyMatchID from "./components/MatchIDDirectory/ModifyMatchID";
+import ScrollToTop from './components/ScrollToTop';
+import Facility from './components/Facility';
+import Department from './components/Department';
+import Svs from './pages/svs/Svs';
+import ModifyMatchID from './components/MatchIDDirectory/ModifyMatchID';
 
 function App() {
   // Retrieve isLoggedIn state from localStorage on initial render
@@ -140,7 +140,7 @@ function App() {
 
   useEffect(() => {
     dispatch(fetchPermissionList());
-  }, []);
+  }, [dispatch]);
 
   const isSidebarExpanded = useSelector(selectIsSidebarExpanded);
 
