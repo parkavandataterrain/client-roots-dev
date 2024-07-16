@@ -73,10 +73,8 @@ const Navbar = React.memo(({ onLogout, isMinimized }) => {
   const logout = useCallback(() => {
     localStorage.removeItem('access_token');
     localStorage.removeItem('refresh_token');
-    localStorage.setItem('isLoggedIn', false);
-    onLogout();
-    navigate('/');
-  }, [onLogout, navigate]);
+    navigate('/login');
+  }, [navigate]);
 
   // Handle click outside dropdown
   useEffect(() => {

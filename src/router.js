@@ -1,7 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom';
 import LoginForm from './components/Login/Logins';
 import SignupPage from './components/Signup';
-import Protectedroutes from '../src/components/common/Protectedroutes'
 import PasswordReset from './components/Login/PasswordReset';
 import Dashboard from './pages/Dashboard/Dashboard';
 import { routes } from './constants/routes';
@@ -54,6 +53,7 @@ import Department from './components/Department';
 import Svs from './pages/svs/Svs';
 import MatchIDDirectory from './components/MatchIDDirectory';
 import ModifyMatchID from './components/MatchIDDirectory/ModifyMatchID';
+import ProtectedRoutes from '../src/components/common/Protectedroutes';
 
 
 
@@ -65,7 +65,7 @@ const router = createBrowserRouter([
   },
   { path: routes.passwordReset, element: <PasswordReset /> },
   {
-    element: <Protectedroutes />,
+    element: <ProtectedRoutes />,
     children: [
       {
         element: <RootLayout />,

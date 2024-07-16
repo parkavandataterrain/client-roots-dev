@@ -87,7 +87,6 @@ import Facility from "./components/Facility";
 import Department from "./components/Department";
 import Svs from "./pages/svs/Svs";
 import ModifyMatchID from "./components/MatchIDDirectory/ModifyMatchID";
-import CareplanDirectory from "./components/CareplanDirectory";
 
 function App() {
   // Retrieve isLoggedIn state from localStorage on initial render
@@ -154,7 +153,7 @@ function App() {
             <Navbar
               // onLogout={() => setIsLoggedIn(false)}
               width={width}
-              onLogout={() => dispatch(logout())}
+              // onLogout={() => dispatch(logout())}
               isMinimized={isMinimized}
               toggleSidebar={toggleSidebar}
             />

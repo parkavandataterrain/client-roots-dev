@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Logo2 from "./images/logo-full-h.jpg";
-import MenuIcon from "./images/menuIcon.svg";
-import GroupIcon from "./images/groupIcon.svg";
-import GroupIcon2 from "./images/groupIcon2.svg";
-import SettingIcon from "./images/settingIcon.svg";
-import ProfileIcon from "./images/profileIcon.svg";
-import apiURL from ".././apiConfig";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import Button from '@mui/material/Button';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import Logo2 from './images/logo-full-h.jpg';
+import MenuIcon from './images/menuIcon.svg';
+import GroupIcon from './images/groupIcon.svg';
+import GroupIcon2 from './images/groupIcon2.svg';
+import SettingIcon from './images/settingIcon.svg';
+import ProfileIcon from './images/profileIcon.svg';
+import apiURL from '.././apiConfig';
+import { Link } from 'react-router-dom';
 
-const Navbar = ({ onLogout, isMinimized, toggleSidebar }) => {
+const Navbar = ({ isMinimized, toggleSidebar }) => {
   const navigate = useNavigate(); // Initialize navigate function
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [profileType, setProfileType] = useState(null);
@@ -25,22 +25,24 @@ const Navbar = ({ onLogout, isMinimized, toggleSidebar }) => {
     setAnchorEl(null);
   };
 
+  const onLogout = useSelector((state) => state.auth.logout);
+
   useEffect(() => {
     const fetchProfileType = async () => {
       try {
         const response = await fetch(`${apiURL}/profile-type/`, {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem("access_token")}`,
+            Authorization: `Bearer ${localStorage.getItem('access_token')}`,
           },
         });
         if (!response.ok) {
-          throw new Error("Failed to fetch profile type");
+          throw new Error('Failed to fetch profile type');
         }
         const data = await response.json();
         console.log(data);
         setProfileType(data.user_type);
       } catch (error) {
-        console.error("Error fetching profile type:", error);
+        console.error('Error fetching profile type:', error);
       }
     };
 
@@ -53,11 +55,11 @@ const Navbar = ({ onLogout, isMinimized, toggleSidebar }) => {
   };
 
   const logout = () => {
-    localStorage.removeItem("access_token"); // Remove access token
-    localStorage.removeItem("refresh_token");
-    localStorage.setItem("isLoggedIn", false); // Set isLoggedIn to false
-    onLogout(); // Call the onLogout function passed as a prop (if needed)
-    navigate("/"); // Redirect to the login page
+    localStorage.removeItem('access_token'); // Remove access token
+    localStorage.removeItem('refresh_token');
+    // localStorage.setItem("isLoggedIn", false); // Set isLoggedIn to false
+    // onLogout(); // Call the onLogout function passed as a prop (if needed)
+    navigate('/'); // Redirect to the login page
   };
 
   return (
@@ -89,28 +91,28 @@ const Navbar = ({ onLogout, isMinimized, toggleSidebar }) => {
           <button className="p-1 bg-[#EAECEB]" onClick={handleClick}>
             <img src={ProfileIcon} className="size-4" alt="profile" />
           </button>
-          <Menu
+          {/* <Menu
             id="demo-positioned-menu"
             aria-labelledby="demo-positioned-button"
             anchorEl={anchorEl}
             open={open}
             onClose={handleClose}
             anchorOrigin={{
-              vertical: "top",
-              horizontal: "left",
+              vertical: 'top',
+              horizontal: 'left',
             }}
             transformOrigin={{
-              vertical: "top",
-              horizontal: "left",
+              vertical: 'top',
+              horizontal: 'left',
             }}
             className="mt-7"
           >
-            <MenuItem onClick={() => navigate("/UserProfile")}>
+            <MenuItem onClick={() => navigate('/UserProfile')}>
               Profile
             </MenuItem>
             <MenuItem onClick={handleClose}>My account</MenuItem>
-            <MenuItem onClick={logout}>Logout</MenuItem>
-          </Menu>
+            <MenuItem onClick={onLogout}>Logout</MenuItem>
+          </Menu> */}
         </div>
       </div>
     </nav>

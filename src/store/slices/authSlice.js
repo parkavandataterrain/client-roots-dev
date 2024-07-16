@@ -1,8 +1,8 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import api from "../../services/api";
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import api from '../../services/api';
 
-const ACCES_TOKEN = localStorage.getItem("access_token");
-const REFRESH_TOKEN = localStorage.getItem("refresh_token");
+const ACCES_TOKEN = localStorage.getItem('access_token');
+const REFRESH_TOKEN = localStorage.getItem('refresh_token');
 
 const initialState = {
   isLoggedIn: ACCES_TOKEN && REFRESH_TOKEN ? true : false,
@@ -11,19 +11,19 @@ const initialState = {
 };
 
 export const loginAsync = createAsyncThunk(
-  "auth/login",
+  'auth/login',
   async (userCredentials, { rejectWithValue }) => {
     try {
-      const { data } = await api.post("/token/", userCredentials, {
+      const { data } = await api.post('/token/', userCredentials, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
         },
         withCredentials: true,
       });
 
-      localStorage.setItem("access_token", data.access);
-      localStorage.setItem("refresh_token", data.refresh);
-
+      localStorage.setItem('access_token', data.access);
+      localStorage.setItem('refresh_token', data.refresh);
+    
       return data;
     } catch (error) {
       if (error.response) {
@@ -31,11 +31,11 @@ export const loginAsync = createAsyncThunk(
         return rejectWithValue(error.response.data);
       } else if (error.request) {
         // Handle network errors
-        return rejectWithValue("Network error occurred. Please try again.");
+        return rejectWithValue('Network error occurred. Please try again.');
       } else {
         // Handle other errors
         return rejectWithValue(
-          "An unexpected error occurred. Please try again later."
+          'An unexpected error occurred. Please try again later.'
         );
       }
     }
@@ -70,14 +70,14 @@ export const loginAsync = createAsyncThunk(
 // );
 
 const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     logout(state) {
-      localStorage.removeItem("access_token");
-      localStorage.removeItem("refresh_token");
-      localStorage.removeItem("StaySignedIn");
-      state.isLoggedIn = false;
+      localStorage.removeItem('access_token');
+      localStorage.removeItem('refresh_token');
+      localStorage.removeItem('StaySignedIn');
+      // state.isLoggedIn = false;
     },
   },
   extraReducers: (builder) => {

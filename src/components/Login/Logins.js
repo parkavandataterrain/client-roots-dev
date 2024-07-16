@@ -1,20 +1,22 @@
-import React, { useState } from "react";
-import axios from "axios"; // Don't forget to import axios if it's not already imported
-import { useDispatch } from "react-redux";
-import { loginAsync } from "../../store/slices/authSlice";
-import { fetchPermissionList } from "../../store/slices/userInfoSlice";
-import { useForm } from "react-hook-form";
-import { TailSpin } from "react-loader-spinner";
-import { BeatLoader } from "react-spinners";
+import React, { useState } from 'react';
+import axios from 'axios'; // Don't forget to import axios if it's not already imported
+import { useDispatch } from 'react-redux';
+import { loginAsync } from '../../store/slices/authSlice';
+import { fetchPermissionList } from '../../store/slices/userInfoSlice';
+import { useForm } from 'react-hook-form';
+import { TailSpin } from 'react-loader-spinner';
+import { BeatLoader } from 'react-spinners';
 
 // import RootsLogo from "../../image/root.png";
-import RootsLogo from "../images/logo-full-v.png";
-import apiURL from "../.././apiConfig";
-import PasswordReset from "./PasswordReset";
-import AlertSuccess from "../common/AlertSuccess";
-import AlertError from "../common/AlertError";
+import RootsLogo from '../images/logo-full-v.png';
+import apiURL from '../.././apiConfig';
+import PasswordReset from './PasswordReset';
+import AlertSuccess from '../common/AlertSuccess';
+import AlertError from '../common/AlertError';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm = () => {
+  const navigate = useNavigate();
   const [isFlipped, setIsFlipped] = useState(false);
   const [showSuccessAlert, setSuccessShowAlert] = useState(false);
   const [showErrorAlert, setErrorShowAlert] = useState(false);
@@ -49,19 +51,19 @@ const LoginForm = () => {
   } = useForm();
 
   const dispatch = useDispatch();
-  
+
   const handleLogin = (loginData) => {
     setErrorShowAlert(false);
-    console.log("Login data ", loginData);
+    console.log('Login data ', loginData);
     const user = {
       email: loginData.userEmail,
       password: loginData.password,
     };
+
     try {
       setIsLoading(true);
       dispatch(loginAsync(user)).then((result) => {
         // 'result' here contains either the fulfilled action payload or the rejected action payload
-        console.log("result", result);
         if (result.payload.detail) {
           setErrorMsg(result.payload.detail);
         } else if (result.payload) {
@@ -69,15 +71,17 @@ const LoginForm = () => {
         }
         setErrorShowAlert(true);
         setIsLoading(false);
-
+        navigate("/");
+        console.log('killer');
+        
         dispatch(fetchPermissionList());
         // }
       });
     } catch (error) {
-      console.error("Login error:", error);
+      console.error('Login error:', error);
     }
 
-    console.log("Login");
+    console.log('Login');
   };
 
   const handlePasswordReset = (resetData) => {
@@ -87,13 +91,13 @@ const LoginForm = () => {
       .post(`${apiURL}/api/password/reset/`, resetData)
       .then((response) => {
         console.log(response.data);
-        setSuccessMsg("Password reset email has been sent");
+        setSuccessMsg('Password reset email has been sent');
         setErrorShowAlert(false);
         setSuccessShowAlert(true);
       })
       .catch((error) => {
         console.error(
-          "Error fetching Client Diagnosis Data:",
+          'Error fetching Client Diagnosis Data:',
           error.response.data
         );
         setErrorMsg(error?.response?.data?.error);
@@ -112,29 +116,29 @@ const LoginForm = () => {
           <div
             className={`w-96 h-fit flex flex-col bg-white rounded shadow`}
             style={{
-              transformStyle: "preserve-3d",
-              transition: "transform 0.5s",
-              transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+              transformStyle: 'preserve-3d',
+              transition: 'transform 0.5s',
+              transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
             }}
           >
             {showSuccessAlert && (
-              <div style={{ transform: "rotateY(180deg)" }}>
+              <div style={{ transform: 'rotateY(180deg)' }}>
                 <AlertSuccess
                   message={successMsg}
                   handleClose={closeSuccessAlert}
-                />{" "}
+                />{' '}
               </div>
             )}
             {showErrorAlert && (
-              <div style={{ transform: "rotateY(180deg)" }}>
-                <AlertError message={errorMsg} handleClose={closeErrorAlert} />{" "}
+              <div style={{ transform: 'rotateY(180deg)' }}>
+                <AlertError message={errorMsg} handleClose={closeErrorAlert} />{' '}
               </div>
             )}
             <form onSubmit={handleSubmit(handlePasswordReset)}>
-              <div style={{ transform: "rotateY(180deg)" }}>
+              <div style={{ transform: 'rotateY(180deg)' }}>
                 <div
                   className={`flex flex-col items-center space-y-0 pb-5 ${
-                    showSuccessAlert || showErrorAlert ? "pt-0" : "pt-5"
+                    showSuccessAlert || showErrorAlert ? 'pt-0' : 'pt-5'
                   }`}
                 >
                   <img className="w-24 h-100" src={RootsLogo} />
@@ -150,14 +154,14 @@ const LoginForm = () => {
                     data-testid="reset-email-address"
                     id="reset-email-address"
                     className="border-b border-gray-800  focus:outline-none px-2 py-1 w-full mb-2"
-                    {...register("email", {
-                      required: "Email Address is required",
+                    {...register('email', {
+                      required: 'Email Address is required',
                       pattern: {
                         // value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                         // message: "Invalid email address",
                         value: /^[A-Z0-9._%+-]+@rootscommunityhealth\.org$/i,
                         message:
-                          "Email must be from the rootscommunityhealth.org domain",
+                          'Email must be from the rootscommunityhealth.org domain',
                       },
                     })}
                   />
@@ -197,17 +201,17 @@ const LoginForm = () => {
         ) : (
           <div
             className={`w-96 h-fit flex flex-col bg-white rounded shadow ${
-              showErrorAlert ? "pt-0" : "pt-5"
+              showErrorAlert ? 'pt-0' : 'pt-5'
             }`}
             style={{
-              transformStyle: "preserve-3d",
-              transition: "transform 0.5s",
-              transform: isFlipped ? "rotateY(180deg)" : "rotateY(0deg)",
+              transformStyle: 'preserve-3d',
+              transition: 'transform 0.5s',
+              transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)',
             }}
           >
             {showErrorAlert && (
               <div>
-                <AlertError message={errorMsg} handleClose={closeErrorAlert} />{" "}
+                <AlertError message={errorMsg} handleClose={closeErrorAlert} />{' '}
               </div>
             )}
             <form onSubmit={handleSubmitLogin(handleLogin)}>
@@ -232,15 +236,15 @@ const LoginForm = () => {
                     id="login-email-address"
                     placeholder="rootsclinic email"
                     className="border-b border-gray-800 focus:outline-none px-2 py-1 w-full mb-2"
-                    {...registerLogin("userEmail", {
-                      required: "Email Address is required",
+                    {...registerLogin('userEmail', {
+                      required: 'Email Address is required',
                       pattern: {
                         // value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                         // message: "Invalid email address",
 
                         value: /^[A-Z0-9._%+-]+@rootscommunityhealth\.org$/i,
                         message:
-                          "Email must be from the rootscommunityhealth.org domain",
+                          'Email must be from the rootscommunityhealth.org domain',
                       },
                     })}
                   />
@@ -257,8 +261,8 @@ const LoginForm = () => {
                     id="login-password"
                     type="password"
                     className="border-b border-gray-800 focus:outline-none px-2 py-1 w-full mb-2"
-                    {...registerLogin("password", {
-                      required: "Password is required",
+                    {...registerLogin('password', {
+                      required: 'Password is required',
                     })}
                   />
                   {errorsLogin.password && (
