@@ -1,0 +1,16 @@
+.nav-tabs .nav-link:hover {
+    background-color: #48ca15; /* Change background color on hover */
+ 
+  }
+
+#active-link {
+    background-color: #dbfce7;
+    color:#4b9b6b;
+    border-style: solid;
+    border-color: #4b9b6b;
+    border-width: 1px;
+  }
+
+#in-active-link{
+  color:black
+}

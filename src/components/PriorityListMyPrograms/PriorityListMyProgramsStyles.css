@@ -1,0 +1,9 @@
+@media screen and (max-width: 600px){
+    #priority-list-my-programs-3 {
+        font-size: 15px;
+    }
+
+    #priority-list-my-programs-6 {
+        color: #a3a3a3;
+    }
+}

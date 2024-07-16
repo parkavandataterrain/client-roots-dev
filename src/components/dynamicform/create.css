@@ -1,0 +1,64 @@
+#modules {
+  /* background: #eee; */
+  margin-bottom: 20px;
+  z-index: 1;
+  border-radius: 10px;
+}
+
+/* #dropzone {
+  padding: 20px;
+  background: #eee;
+  min-height: 100px;
+  margin-bottom: 20px;
+  z-index: 0;
+  border-radius: 10px;
+} */
+
+.active {
+  outline: 1px solid red;
+}
+
+.hover {
+  outline: 1px solid blue;
+}
+
+.drop-item {
+  cursor: pointer;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  padding: 5px 10px;
+  border-radisu: 3px;
+  border: 1px solid rgb(204, 204, 204);
+  position: relative;
+}
+
+.drop-item .remove {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+}
+
+#dropzone {
+  position: relative; /* Ensure the ::before pseudo-element is positioned relative to this */
+  padding: 20px;
+  /* background: #eee; */
+  min-height: 80%;
+  /* margin-bottom: 20px; */
+  border-radius: 10px;
+}
+
+#dropzone::before {
+  /* content: "Add Here"; */
+  position: absolute;
+  top: 50%; /* Position the top of the image at the vertical center */
+  left: 50%; /* Position the left of the image at the horizontal center */
+  transform: translate(
+    -50%,
+    -50%
+  ); /* Move the image back by half of its own width and height to center it */
+  /* background-image: url('path/to/your/image.jpg') */
+  width: 100px; /* Adjust width of the image as needed */
+  height: 100px; /* Adjust height of the image as needed */
+  background-size: cover; /* Adjust background size as needed */
+  background-position: center; /* Adjust background position as needed */
+}

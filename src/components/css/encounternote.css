@@ -1,0 +1,25 @@
+.file-list {
+    list-style-type: none;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-radius: 5px;
+  }
+  
+  .file-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    margin-bottom: 5px;
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+  }
+  
+  .file-item span {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  

@@ -1,0 +1,9 @@
+@media screen and (max-width: 600px){
+    #appointment-calendar-3 {
+        font-size: 16px;
+    }
+
+    #appointment-calendar-6 {
+        color: #a3a3a3;
+    }
+}

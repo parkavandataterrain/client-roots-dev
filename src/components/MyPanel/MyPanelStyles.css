@@ -1,0 +1,9 @@
+@media screen and (max-width: 600px){
+    #my-panel-3 {
+        font-size: 16px;
+    }
+
+    #my-panel-6 {
+        color: #a3a3a3;
+    }
+}

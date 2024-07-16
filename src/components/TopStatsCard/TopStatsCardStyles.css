@@ -1,0 +1,37 @@
+@media screen and (max-width: 600px){
+
+    #top-stats-2 {
+        font-size: 14px;
+    }
+
+    #top-stats-5 {
+        color: #a3a3a3;
+    }
+
+    #top-stats-6 {
+        font-size: 23px;
+        margin: 25px 0;
+    }
+
+    #top-stats-6 div {
+        border-radius: 3px;
+        padding: 20px !important;
+    }
+
+    #top-stats-9 {
+        margin: 15px 0;
+    }
+
+    #top-stats-11 {
+        width: 18px;
+        height: 18px;
+    }
+
+    #top-stats-12 {
+        font-size: 9px;
+    }
+
+    #top-stats-13 {
+        width: 25px;
+    }
+}

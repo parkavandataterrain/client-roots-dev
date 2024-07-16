@@ -1,0 +1,39 @@
+.date-picker .MuiPickersDay-daySelected {
+  border: unset !important;
+}
+.MuiDateCalendar-root {
+  border: 1px solid #dedede;
+}
+.date-picker .Mui-selected {
+  background-color: #5bc4bf !important;
+}
+.date-picker .MuiButtonBase-root {
+  border: unset !important;
+}
+/* .mui-flbe84-MuiDayCalendar-weekContainer {
+  justify-content: space-between;
+}
+
+.MuiDayCalendar-header {
+  justify-content: space-between;
+}
+
+.MuiDayCalendar-weekContainer {
+  margin: 0;
+}
+.MuiButtonBase-root {
+    height: 30px !important;
+}
+
+.MuiDateCalendar-root {
+    min-height: fit-content !important;
+}  */
+
+@media screen and (max-width: 1025px){
+  .css-1q04gal-MuiDateCalendar-root, .css-1vs7z2v-MuiYearCalendar-root {
+    width: 100% !important;
+  }
+  .css-i5q14k-MuiDayCalendar-header, .css-flbe84-MuiDayCalendar-weekContainer {
+    justify-content: space-around !important;
+  }
+}

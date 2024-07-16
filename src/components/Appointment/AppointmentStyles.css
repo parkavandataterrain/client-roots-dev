@@ -1,0 +1,10 @@
+@media screen and (max-width: 600px){
+    
+    #appointment-3 {
+        width: 0.85em !important;
+    }
+    
+    #appointment-4 {
+        color: #a3a3a3;
+    }
+}

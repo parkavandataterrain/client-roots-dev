@@ -1,0 +1,33 @@
+#highlight-red{
+    background-color: red;
+}
+
+#hightlight-yellow{
+    background-color: yellow;
+}
+
+#hightlight-green{
+    background-color: green;
+}
+
+#accordion-tab{
+    color: red;
+    background-color: #29008a;
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 13%);
+}
+
+.ab{
+    background-color: red !important;
+}
+
+.accordion-button {
+    font-weight: bold;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+.accordion-button:not(.collapsed) {
+  color: #212529;
+}

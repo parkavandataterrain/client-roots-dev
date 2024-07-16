@@ -1,0 +1,9 @@
+@media screen and (max-width: 600px){
+    #priority-list-3 {
+        font-size: 16px;
+    }
+
+    #priority-list-6 {
+        color: #a3a3a3;
+    }
+}

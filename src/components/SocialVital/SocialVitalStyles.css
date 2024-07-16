@@ -1,0 +1,25 @@
+@media screen and (max-width: 600px){
+
+    #social-vital-2 {
+        font-size: 16px;
+    }
+
+    #social-vital-3 {
+        border: 1px solid #2F9384;
+    }
+
+    #social-vital-5 {
+        color: #a3a3a3;
+    }
+
+    #social-vital-6 {
+        margin: 16px 0 !important;
+    }
+
+    #social-vital-10 {
+        border-radius: 3px;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+        font-size: 12px;
+    }
+}
